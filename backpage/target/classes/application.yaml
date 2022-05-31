@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/kaoqin?serverTimezone=UTC
+    username: root
+    password: hrj666
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    druid:
+      aop-patterns: backpage.mybatisplus.*
+      filters: stat,wall
+
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: admin
+        resetEnable: false
+
+      web-stat-filter:
+        enabled: true
+        urlPattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+
+
+      filter:
+        stat:
+          slow-sql-millis: 1000
+          logSlowSql: true
+          enabled: true
+        wall:
+          enabled: true
+          config:
+            drop-table-allow: false
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+server:
+  port: 8082
